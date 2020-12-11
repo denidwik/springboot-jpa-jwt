@@ -80,4 +80,8 @@ public class AuthService {
 
         return userRepository.save(user).getId();
         }
+
+    public Boolean checkToken(String token) {
+        return tokenProvider.validateToken(token);
+    }
 }

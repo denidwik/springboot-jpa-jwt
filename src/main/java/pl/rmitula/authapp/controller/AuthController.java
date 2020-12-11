@@ -2,6 +2,7 @@ package pl.rmitula.authapp.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import pl.rmitula.authapp.dto.JwtAuthenticationRequest;
 import pl.rmitula.authapp.dto.JwtAuthenticationResponse;
 import pl.rmitula.authapp.dto.LoginRequest;
 import pl.rmitula.authapp.dto.SignUpRequest;
@@ -34,4 +35,11 @@ public class AuthController {
         System.out.println("username : " + signUpRequest.getUsername());
         return authService.registerUser(signUpRequest);
     }
+
+    @GetMapping("/checkToken")
+    @ResponseStatus(OK)
+    public Boolean checkToken(@RequestHeader(value = "Authorization") String token){
+        return authService.checkToken(token);
+    }
+
 }
